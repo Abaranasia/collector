@@ -43,3 +43,9 @@
         music:  'music',
     }
 ```
+
+### Nice to have / future improvements
+    - series: attached to items inside a collection
+    - images: for items
+    - Authentication: supertokens?
+    - charts: dognut for collected/uncollected, metrics based on totals, collections compared, rankings
