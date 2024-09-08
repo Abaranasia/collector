@@ -5,8 +5,11 @@ export interface AuthorProps {
 }
 
 export class Author extends ValueObject<AuthorProps> {
+  private value: string;
+
   private constructor(props: AuthorProps) {
-    super(props)
+    super(props);
+    this.value = props.value;
   }
 
   public static create(author: string): Author {
@@ -16,7 +19,7 @@ export class Author extends ValueObject<AuthorProps> {
     return new Author({ value: author.trim() })
   }
   
-  public get author(): string {
-    return this.props.value;
+  public getValue(): string {
+    return this.value;
   }
 }
