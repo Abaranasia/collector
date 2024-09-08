@@ -7,6 +7,7 @@
 
 ## Entities
 - **Collection**
+    - name: Title
     - author: string
     - category: string (book/album)
     - number of items (collected/uncollected) (calculated field)
@@ -34,6 +35,7 @@
 - **ListsCollectionItems**: upon selecting a collection, lists all items. It should list titles, length, creationDate and checkbox to set if collected or not. Include a button to AddNewItem
 - **EditItem**: edit any field of an item
 - **RemoveItem**: allow deleting an item
+- **UpdateCollect**: change collect value for an existing item
 
 
 ### DATABASE COLLECTIONS
