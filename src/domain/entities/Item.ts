@@ -1,4 +1,4 @@
-import { Entity, EntityData }  from './Entity';
+import { Entity, EntityData } from './Entity';
 
 import { Title } from '../value-objects/Title';
 import { Id } from '../value-objects/Id';
@@ -9,7 +9,7 @@ export interface ItemData extends EntityData {
   length: string;
   creationDate: number;
   collected: boolean;
-  collectionId: string;
+  collectionType: string;
 }
 
 export interface ItemProps {
@@ -19,7 +19,7 @@ export interface ItemProps {
   length: string;
   creationDate: number;
   collected: boolean;
-  collectionId: string;
+  collectionType: string;
 }
 
 export class Item extends Entity {
@@ -28,7 +28,7 @@ export class Item extends Entity {
   public readonly length: string;
   public readonly creationDate: number;
   public readonly collected: boolean;
-  public readonly collectionId: string;
+  public readonly collectionType: string;
 
   constructor(data: ItemData) {
     super(data.id);
@@ -38,7 +38,7 @@ export class Item extends Entity {
     this.length = data.length;
     this.creationDate = data.creationDate;
     this.collected = data.collected;
-    this.collectionId = data.collectionId;
+    this.collectionType = data.collectionType;
   }
 
   static create(props: ItemProps): Item {
@@ -49,7 +49,7 @@ export class Item extends Entity {
     const { length } = props;
     const { creationDate } = props;
     const { collected } = props;
-    const { collectionId } = props;
+    const { collectionType } = props;
 
     return new Item({
       id,
@@ -58,7 +58,7 @@ export class Item extends Entity {
       length,
       creationDate,
       collected,
-      collectionId,
+      collectionType,
     });
   }
 
@@ -72,7 +72,7 @@ export class Item extends Entity {
     const length = props.length ?? this.length;
     const creationDate = props.creationDate ?? this.creationDate;
     const collected = props.collected ?? this.collected;
-    const collectionId = props.collectionId ?? this.collectionId;
+    const collectionType = props.collectionType ?? this.collectionType;
 
     return new Item({
       id,
@@ -81,7 +81,7 @@ export class Item extends Entity {
       length,
       creationDate,
       collected,
-      collectionId,
+      collectionType,
     });
   }
 }
