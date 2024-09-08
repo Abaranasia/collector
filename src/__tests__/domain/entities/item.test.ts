@@ -32,8 +32,8 @@ describe("Test on Item entity", () => {
     const book = Item.create(newItem);
     const updatedBook = book.update({ title: newTitle });
 
-    expect(updatedBook.title).not.toBe(book.title);
     expect(updatedBook.id).toEqual(book.id);
+    expect(updatedBook.title.getValue()).not.toBe(book.title);
     expect(updatedBook.title.getValue()).toBe(newTitle);
   });
 
