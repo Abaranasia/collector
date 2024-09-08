@@ -3,11 +3,12 @@ import { Entity, EntityData } from "./Entity";
 import { Id } from "../value-objects/Id";
 import { Title } from "../value-objects/Title";
 import { Author } from "../value-objects/Author";
+import { Category } from "../value-objects/Category";
 
 export interface CollectionData extends EntityData {
   name: Title;
   author: Author;
-  category: string;
+  category: Category;
 }
 
 export interface CollectionProps {
@@ -20,21 +21,21 @@ export interface CollectionProps {
 export class Collection extends Entity {
   public readonly name: Title;
   public readonly author: Author;
-  public readonly category: string;
+  public readonly category: Category;
 
   constructor(data: CollectionData) {
     super(data.id);
 
     this.name = data.name;
     this.author = data.author;
-    this.category = data.category; // TODO: category value-object for book/album values
+    this.category = data.category;
   }
 
   static create(props: CollectionProps): Collection {
     const id = props.id ? Id.createFrom(props.id) : Id.create();
     const name = Title.create(props.name);
     const author = Author.create(props.author);
-    const { category } = props;
+    const category = Category.create(props.category);
 
     return new Collection({
       id,
@@ -48,7 +49,7 @@ export class Collection extends Entity {
     const id = props.id ? Id.createFrom(props.id) : this.id;
     const name = props.name ? Title.create(props.name) : this.name;
     const author = props.author ? Author.create(props.author) : this.author;
-    const category = props.category ?? this.category;
+    const category = props.category ? Category.create(props.category) : this.category;
 
     return new Collection({ id, name, author, category });
   }
