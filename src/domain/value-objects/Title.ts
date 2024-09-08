@@ -5,11 +5,9 @@ export interface TitleProps {
 }
 
 export class Title extends ValueObject<TitleProps> {
-  private value: string;
   
   constructor(props: TitleProps) {
     super(props);
-    this.value = props.value;
 
   }
 
@@ -21,6 +19,6 @@ export class Title extends ValueObject<TitleProps> {
   }
 
   public getValue(): string {
-    return this.value;
+    return this.props.value;
   }
 }
