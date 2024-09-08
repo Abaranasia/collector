@@ -27,6 +27,9 @@
 - **EditCollection**: allows editing author and category
 - **ListCollections**: depending on category (books/albums); it should display author, category and number of items collected/uncollected?
 - **RemoveCollection**: delete a collection and remove its items. Requires confirmation
+- **CountItemsInCollection**
+- **CountCollected**
+- **CountUncollected**
 
 **Item useCases**
 - **AddNewItem**: creates new entry for a collection. Depending on the category: add title, subtitle, creationDate, length and details?
@@ -51,7 +54,8 @@
 ```
 
 ### Nice to have / future improvements
-    - series: attached to items inside a collection
-    - images: for items
+    - series: attached to items inside a collection (subtitle)
+    - images for items
+    - images for collections
     - Authentication: supertokens?
     - charts: dognut for collected/uncollected, metrics based on totals, collections compared, rankings
