@@ -1,12 +1,16 @@
 import { ValueObject } from "./ValueObject";
 
 export interface TitleProps {
-  value: string
+  value: string;
 }
 
 export class Title extends ValueObject<TitleProps> {
-  private constructor(props: TitleProps) {
-    super(props)
+  private value: string;
+  
+  constructor(props: TitleProps) {
+    super(props);
+    this.value = props.value;
+
   }
 
   public static create(title: string): Title {
@@ -16,7 +20,7 @@ export class Title extends ValueObject<TitleProps> {
     return new Title({ value: title.trim() })
   }
 
-  public get title(): string {
-    return this.props.value;
+  public getValue(): string {
+    return this.value;
   }
 }
