@@ -1,5 +1,9 @@
 # Collector App frontend (Clean Architecture + Typescript + React)
 ## Value-objects
+    - Id
+    - Title
+    - Author
+    - Category ?
 
 ## Entities
 - **Collection**
