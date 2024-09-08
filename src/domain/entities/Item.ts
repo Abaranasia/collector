@@ -9,7 +9,7 @@ export interface ItemData extends EntityData {
   length: string;
   creationDate: number;
   collected: boolean;
-  collectionType: string;
+  collection: string;
 }
 
 export interface ItemProps {
@@ -19,7 +19,7 @@ export interface ItemProps {
   length: string;
   creationDate: number;
   collected: boolean;
-  collectionType: string;
+  collection: string;
 }
 
 export class Item extends Entity {
@@ -28,7 +28,7 @@ export class Item extends Entity {
   public readonly length: string;
   public readonly creationDate: number;
   public readonly collected: boolean;
-  public readonly collectionType: string;
+  public readonly collection: string;
 
   constructor(data: ItemData) {
     super(data.id);
@@ -38,7 +38,7 @@ export class Item extends Entity {
     this.length = data.length;
     this.creationDate = data.creationDate;
     this.collected = data.collected;
-    this.collectionType = data.collectionType;
+    this.collection = data.collection;
   }
 
   static create(props: ItemProps): Item {
@@ -49,7 +49,7 @@ export class Item extends Entity {
     const { length } = props;
     const { creationDate } = props;
     const { collected } = props;
-    const { collectionType } = props;
+    const { collection } = props;
 
     return new Item({
       id,
@@ -58,7 +58,7 @@ export class Item extends Entity {
       length,
       creationDate,
       collected,
-      collectionType,
+      collection,
     });
   }
 
@@ -72,7 +72,7 @@ export class Item extends Entity {
     const length = props.length ?? this.length;
     const creationDate = props.creationDate ?? this.creationDate;
     const collected = props.collected ?? this.collected;
-    const collectionType = props.collectionType ?? this.collectionType;
+    const collection = props.collection ?? this.collection;
 
     return new Item({
       id,
@@ -81,7 +81,7 @@ export class Item extends Entity {
       length,
       creationDate,
       collected,
-      collectionType,
+      collection,
     });
   }
 }
