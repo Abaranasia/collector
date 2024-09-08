@@ -1,7 +1,7 @@
 import { Entity, EntityData } from './Entity';
 
-import { Title } from '../value-objects/Title';
 import { Id } from '../value-objects/Id';
+import { Title } from '../value-objects/Title';
 
 export interface ItemData extends EntityData {
   title: Title;
@@ -42,7 +42,6 @@ export class Item extends Entity {
   }
 
   static create(props: ItemProps): Item {
-    // Review if it worths to create an itemId value-object based on Id
     const id = props.id ? Id.createFrom(props.id) : Id.create();
     const title = Title.create(props.title);
     const subtitle = Title.create(props.subtitle);
