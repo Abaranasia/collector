@@ -1,16 +1,6 @@
-import { ApiInstanceHeaders } from "../../../domain/entities/ApiInstance";
-import { Collection } from "../../../domain/entities/Collection";
+import { ApiInstanceHeaders } from "../entities/ApiInstance";
+import { Collection } from "../entities/Collection";
 import { PaginatedObjects } from "../entities/Paginated";
-
-export interface CollectionRepository {
-  createCollection({ params, headers }: CreateCollectionParams): Promise<() => void>;
-  updateCollection({ params, headers }: UpdateCollectionParams): Promise<() => void>;
-  deleteCollection({ params, headers }: DeleteCollectionParams): Promise<() => void>;
-  listCollections({
-    params,
-    headers,
-  }: GetCollectionsParams): Promise<PaginatedObjects<Collection[]>>;
-}
 
 export interface CreateCollectionParams {
   params: {
@@ -38,3 +28,13 @@ export interface GetCollectionsParams {
     };
     headers?: ApiInstanceHeaders;
   }
+
+export interface CollectionRepository {
+  createCollection({ params, headers }: CreateCollectionParams): Promise<Collection>;
+  updateCollection({ params, headers }: UpdateCollectionParams): Promise<Collection>;
+  deleteCollection({ params, headers }: DeleteCollectionParams): Promise<() => void>;
+  listCollections({
+    params,
+    headers,
+  }: GetCollectionsParams): Promise<PaginatedObjects<Collection[]>>;
+}

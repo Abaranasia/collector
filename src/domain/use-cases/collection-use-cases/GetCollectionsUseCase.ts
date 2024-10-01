@@ -1,4 +1,4 @@
-import { Collection } from "../../../../domain/entities/Collection";
+import { Collection } from "../../entities/Collection";
 import { CollectionRepository, GetCollectionsParams } from "../../repositories/CollectionRepository";
 import { PaginatedObjects } from "../../entities/Paginated";
 
