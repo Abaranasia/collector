@@ -3,18 +3,18 @@
     - Id
     - Title
     - Author
-    - Category ?
+    - Category
 
 ## Entities
 - **Collection**
     - name: Title
-    - author: string
-    - category: string (book/album)
+    - author: Author
+    - category: Category
     - number of items (collected/uncollected) (calculated field)
 
 - **item**
-    - title: string
-    - subtitle: string
+    - title: Title
+    - subtitle: Title
     - length: string (time/pages)
     - creationDate: number (years)
     - collected: boolean
