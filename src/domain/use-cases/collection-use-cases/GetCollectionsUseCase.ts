@@ -1,9 +1,9 @@
 import { Collection } from "../../entities/Collection";
-import { CollectionRepository, GetCollectionsParams } from "../../repositories/CollectionRepository";
+import { CollectionRepositoryI, GetCollectionsParams } from "../../repositories/CollectionRepositoryI";
 import { PaginatedObjects } from "../../entities/Paginated";
 
 export class GetCollectionsUseCase {
-    constructor(private collectionRepository: CollectionRepository){}
+    constructor(private collectionRepository: CollectionRepositoryI){}
 
     async execute({ params, headers }: Partial<GetCollectionsParams>): Promise<PaginatedObjects<Collection[]>> {
         const page = params?.page ?? 1;

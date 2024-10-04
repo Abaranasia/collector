@@ -1,11 +1,11 @@
 import { Collection } from "../../entities/Collection";
 import { 
-  CollectionRepository, 
+  CollectionRepositoryI, 
   CreateCollectionParams,
- } from "../../repositories/CollectionRepository";
+ } from "../../repositories/CollectionRepositoryI";
 
 export class CreateCollectionsUseCase {
-    constructor(private collectionRepository: CollectionRepository){}
+    constructor(private collectionRepository: CollectionRepositoryI){}
 
     async execute({ params, headers }: CreateCollectionParams): Promise<Collection> {
         const name = params.name;
