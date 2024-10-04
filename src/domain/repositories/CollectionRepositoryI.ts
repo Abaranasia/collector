@@ -29,7 +29,7 @@ export interface GetCollectionsParams {
     headers?: ApiInstanceHeaders;
   }
 
-export interface CollectionRepository {
+export interface CollectionRepositoryI {
   createCollection({ params, headers }: CreateCollectionParams): Promise<Collection>;
   updateCollection({ params, headers }: UpdateCollectionParams): Promise<Collection>;
   deleteCollection({ params, headers }: DeleteCollectionParams): Promise<() => void>;
