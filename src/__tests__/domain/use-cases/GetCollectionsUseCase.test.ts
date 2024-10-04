@@ -30,12 +30,20 @@ describe("Tests on GetCollectionsUseCase", () => {
       headers: undefined,
     });
   });
+  
   test("should be called with the provided values", () => {
     const mockCollectionRepository = {
         ...baseMockCollectionRepository,
         listCollections: jest.fn().mockResolvedValue({
-        data: [],
-        total: 0,
+        data: [
+          {
+            id: 123,
+            name: 'Mistborn Series',
+            author: 'Brandon Sanderson',
+            category: 'book'
+        }
+        ],
+        total: 1,
       }),
     };
 
@@ -53,8 +61,15 @@ describe("Tests on GetCollectionsUseCase", () => {
     const resp = useCase.execute(inputProps);
 
     expect(resp).resolves.toEqual({
-      data: [],
-      total: 0,
+      data: [
+        {
+            id: 123,
+            name: 'Mistborn Series',
+            author: 'Brandon Sanderson',
+            category: 'book'
+        }
+      ],
+      total: 1,
     });
 
     expect(mockCollectionRepository.listCollections).toHaveBeenCalledWith(inputProps);
