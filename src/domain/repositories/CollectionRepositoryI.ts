@@ -12,7 +12,12 @@ export interface CreateCollectionParams {
 }
 
 export interface UpdateCollectionParams {
-  params: { id: string };
+  params: { 
+    id: string,
+    name?: string;
+    author?: string;
+    category?: string;
+   };
   headers?: ApiInstanceHeaders;
 }
 
