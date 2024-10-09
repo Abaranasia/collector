@@ -4,7 +4,7 @@ import {
   CreateCollectionParams,
  } from "../../repositories/CollectionRepositoryI";
 
-export class CreateCollectionsUseCase {
+export class CreateCollectionUseCase {
     constructor(private collectionRepository: CollectionRepositoryI){}
 
     async execute({ params, headers }: CreateCollectionParams): Promise<Collection> {
