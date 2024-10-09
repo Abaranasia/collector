@@ -26,7 +26,7 @@ describe("Tests on GetCollectionsUseCase", () => {
     });
 
     expect(mockCollectionRepository.listCollections).toHaveBeenCalledWith({
-      params: { page: 1, count: 100 },
+      params: { page: 1, per_page: 100 },
       headers: undefined,
     });
   });
@@ -50,7 +50,7 @@ describe("Tests on GetCollectionsUseCase", () => {
     const inputProps = {
       params: {
         page: 2,
-        count: 50,
+        per_page: 50,
       },
       headers: { "x-api-key": "123456" },
     };

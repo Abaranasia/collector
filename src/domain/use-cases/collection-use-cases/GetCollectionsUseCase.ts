@@ -5,13 +5,13 @@ import { PaginatedObjects } from "../../entities/Paginated";
 export class GetCollectionsUseCase {
     constructor(private collectionRepository: CollectionRepositoryI){}
 
-    async execute({ params, headers }: Partial<GetCollectionsParams>): Promise<PaginatedObjects<Collection[]>> {
+    async execute({ params, headers }: Partial<GetCollectionsParams>): Promise<PaginatedObjects<Collection[]> | []> {
         const page = params?.page ?? 1;
-        const count = params?.count ?? 100;
+        const per_page = params?.per_page ?? 100;
     
         return this.collectionRepository.listCollections(
           {
-            params: { page, count },
+            params: { page, per_page },
             headers
           }
         );
