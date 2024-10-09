@@ -1,11 +1,13 @@
 import { ApiInstance } from "../../domain/entities/ApiInstance";
-import { Collection } from "../../domain/entities/Collection";
+import { Collection, CollectionProps } from "../../domain/entities/Collection";
 import { PaginatedObjects } from "../../domain/entities/Paginated";
 import {
   CollectionRepositoryI,
+  CreateCollectionParams,
+  DeleteCollectionParams,
   GetCollectionsParams,
+  UpdateCollectionParams,
 } from "../../domain/repositories/CollectionRepositoryI";
-import { ApiCollection, ApiCollectionResponse } from "./ApiCollection";
 
 export class CollectionRepository implements CollectionRepositoryI {
   private api: ApiInstance;
@@ -13,27 +15,41 @@ export class CollectionRepository implements CollectionRepositoryI {
   constructor(api: ApiInstance) {
     this.api = api;
   }
-  createCollection() {}
-  updateCollection() {}
-  deleteCollection() {}
+  async createCollection({ params, headers }: CreateCollectionParams) {
+    console.log("params :>> ", params, headers);
+    let collection = {};
 
-  listCollections({
-    params,
-    headers,
-  }: GetCollectionsParams): Promise<PaginatedObjects<Collection[]>> {
-    fetch("http://localhost:3000/collections")
-      .then((response) => response.json())
-      .then((collections) => console.log(collections));
-    /*  return Promise.resolve({
-      objects: collections.embedded.map((collection) => this._mapToDomain(collection)),
-      pagination: {
-        count: collections._meta.count,
-        total: collections._meta.total,
-      },
-    }); */
+    try {
+      const { data } = await this.api.post("/collections", params);
+      collection = this._mapToDomain(data);
+      console.log("collections :>> ", collection);
+    } catch (error) {
+      console.warn("Unable to read collections: ", error);
+    }
+    return collection;
+
+  }
+  updateCollection({ params, headers }: UpdateCollectionParams) {
+    console.log("params :>> ", params, headers);
+  }
+  deleteCollection({ params, headers }: DeleteCollectionParams) {
+    console.log("params :>> ", params, headers);
   }
 
-  private _mapToDomain(collection: ApiCollection) {
+  async listCollections({ params }: GetCollectionsParams): Promise<PaginatedObjects<Collection[]>> {
+    let collections = [];
+    try {
+      const { data } = await this.api.get("/collections", { params });
+      collections = data.map((col: CollectionProps) => this._mapToDomain(col));
+
+      console.log("collections :>> ", collections);
+    } catch (error) {
+      console.warn("Unable to read collections: ", error);
+    }
+    return collections;
+  }
+
+  private _mapToDomain(collection: CollectionProps): Collection {
     return Collection.create({
       id: collection.id,
       name: collection.name,
@@ -42,30 +58,3 @@ export class CollectionRepository implements CollectionRepositoryI {
     });
   }
 }
-
-const collections: ApiCollectionResponse = {
-  embedded: [
-    {
-      id: "1",
-      name: "Mistborn series 1",
-      author: "Brandon Sanderson",
-      category: "book",
-    },
-    {
-      id: "2",
-      name: "Stormlight Archive",
-      author: "Brandon Sanderson",
-      category: "book",
-    },
-    {
-      id: "3",
-      name: "Skyward",
-      author: "Brandon Sanderson",
-      category: "book",
-    },
-  ],
-  _meta: {
-    count: 30,
-    total: 30,
-  },
-};
