@@ -29,17 +29,14 @@ export interface DeleteCollectionParams {
 export interface GetCollectionsParams {
     params: {
       page: number;
-      count: number;
+      per_page: number;
     };
     headers?: ApiInstanceHeaders;
   }
 
 export interface CollectionRepositoryI {
-  createCollection({ params, headers }: CreateCollectionParams): Promise<Collection>;
-  updateCollection({ params, headers }: UpdateCollectionParams): Promise<Collection>;
-  deleteCollection({ params, headers }: DeleteCollectionParams): Promise<() => void>;
-  listCollections({
-    params,
-    headers,
-  }: GetCollectionsParams): Promise<PaginatedObjects<Collection[]>>;
+   createCollection({ params, headers }: CreateCollectionParams): Promise<Collection | {}>;
+/*  updateCollection({ params, headers }: UpdateCollectionParams): Promise<Collection>;
+  deleteCollection({ params, headers }: DeleteCollectionParams): Promise<() => void>; */
+  listCollections({ params }: GetCollectionsParams): Promise<PaginatedObjects<Collection[]> | []>;
 }
